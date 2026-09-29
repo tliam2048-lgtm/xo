@@ -1,0 +1,1069 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xtra Ordinary</title>
+  <link rel="icon" type="img/JsFqEpU.png" sizes="32x32" href="images/JsFqEpU.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <script src="js/telegram-web-app.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<!-- QR Code Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    header {
+      background-color: #000;
+      padding: 10px;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      letter-spacing: 5px;
+      border-bottom: 0.01rem solid white;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #000;
+      color: #fff;
+      user-select: none;
+    }
+
+    h2 {
+      color: #fff;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      margin-top:1px;
+margin-bottom: 1px;
+      text-align: center;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+        form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    label {
+      color: #fff;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    h3 {
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: 24px;
+    }
+    h4 {
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-style: normal;
+      font-size: 13px;
+    }
+
+    .product-details {
+      padding: 2rem;
+      transition: filter 0.3s ease;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+	  font-size: 26px;
+      font-style: normal;
+    }
+	.h product-details {
+      padding: 2rem;
+      transition: filter 0.3s ease;
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+	  font-size: 26px;
+      font-style: normal;
+    }
+
+.myButton {
+      background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+      background-color: #ffffff;
+      border-radius: 5px;
+      border: 1px solid #dcdcdc;
+      cursor: pointer;
+      color: #000;
+      outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+      margin-top: 5px;
+	  padding: 10px 20px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .iButton {
+      background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+      background-color: #ffffff;
+      border-radius: 5px;
+      border: 1px solid #dcdcdc;
+      cursor: pointer;
+      color: #000;
+	  padding: 10px 30px;
+	  margin-left: 10px;
+      font-size: 15px;
+      outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+      font-weight: bold;
+    }
+    button {
+      background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+      background-color: #ffffff;
+      border-radius: 5px;
+      border: 1px solid #dcdcdc;
+      cursor: pointer;
+      color: #000;
+	  padding: 10px 20px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+
+    button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    button:active {
+      outline: none;
+      box-shadow: none;
+    }
+
+.section {
+  display: none;
+  padding-bottom: 100px; /* Prevent content from overlapping with footer */
+}
+
+    .section.active {
+      display: block;
+    }
+
+.footer-nav {
+  overflow: hidden;
+position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #000;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  border-top: 1px solid #333;
+  z-index: 9999; /* Ensure it stays above other content */
+}
+
+    .footer-nav button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 15px;
+        outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+      font-weight: bolder;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 33.33%;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-nav button:hover {
+      color: transparent;
+        outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+    }
+
+    .footer-nav button img {
+    	  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+      width: 24px;
+      height: 24px;
+      margin-bottom: 1px;
+    }
+
+    .footer-nav button.active {
+      color: transparent;
+        outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+    }
+
+    .user-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .user-info img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  padding: 5px;
+  margin-bottom: 80px; /* Ensure enough space below the product grid */
+}
+
+.product-card {
+  background-color: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 5px; 
+  text-align: center;
+  margin-bottom:5px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  color: #fff;
+  height: 100p;
+  width: 100px;
+  transition: transform 0.1s;
+  cursor: pointer;
+}
+
+.product-card:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;	
+  outline: none; /* Ensures no outline appears when card is clicked */
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.product-details {
+  font-size: 16px; /* Larger product name */
+  margin-bottom: 10px;
+}
+
+.product-card img {
+  max-width: 40px; /* Larger image */
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.product-card h4 {
+  font-size: 11px; /* Larger product name */
+  margin-bottom: 5px;
+}
+
+.product-card p {
+  font-size: 10px; /* Product details */
+  margin-bottom: 5px;
+  color: gray;
+  font-weight: 400;
+}
+
+.product-card h4.price {
+  font-size: 5px; /* Larger price */
+  color: #ffd700; /* Highlight the price in a different color */
+  margin-bottom: 5px;
+}
+
+#crypto-select {
+      width: 90%;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #1e1f1f;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+      border: 1px solid #333;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    #crypto-select option {
+      background-color: #000;
+      color: #fff;
+    }
+
+    #copy-address-button {
+      background-color: #004466;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 15px;
+    }
+
+    #copy-address-button:hover {
+      background-color: #006080;
+    }
+    #countdown {
+      color: red;
+      font-size: 18px;
+      text-align: center;
+      margin-top: 10px;
+    }
+    /* Loading spinner styles */
+    .loading {
+      display: none; /* Initially hidden */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+    }
+
+    .loading:after {
+      content: " ";
+      display: block;
+      width: 64px;
+      height: 64px;
+      margin: 8px;
+      border-radius: 50%;
+      border: 6px solid #fff;
+      border-color: #fff transparent #fff transparent;
+      animation: loading-spin 1.2s linear infinite;
+    }
+
+    @keyframes loading-spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* QR Code Container Styling */
+    #crypto-qr {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px 0;
+      padding: 15px;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      min-height: 250px;
+    }
+
+    #crypto-qr canvas {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+  <script>
+    // Initialize the Telegram WebApp and get user data
+        window.onload = function() {
+            Telegram.WebApp.ready(); // Make sure the WebApp is ready
+            const telegram = Telegram.WebApp;
+            const user = telegram.initDataUnsafe?.user; // Retrieve the user information
+            if (user) {
+                // Populate the user info in the DOM
+                document.getElementById('user-fullname').textContent = `${user.first_name} ${user.last_name || ''}`;
+                document.getElementById('user-username').textContent = user.username ? `@${user.username}` : 'No username';
+                document.getElementById('user-userid').textContent = `${user.id}`;
+                // Fetch the user's profile picture
+                const profilePicUrl = user.photo_url || `https://t.me/i/userpic/320/${user.username}.jpg`;
+                // Set the profile picture and handle error with fallback
+                const profilePic = document.getElementById('user-profile-pic');
+                profilePic.src = profilePicUrl;
+                profilePic.onerror = function() {
+                    profilePic.src = 'https://via.placeholder.com/50';  // Fallback to placeholder image
+                };
+            } else {
+                console.error("User information is not available.");
+            }
+        };
+  </script>
+ </head>
+ <body>
+   <!-- Profile Section -->
+   <div id="profile" class="section active">
+   	  <header>
+   <h2>PROFILE</h2></header>
+    <div class="user-info">
+     <img id="user-profile-pic" src="https://via.placeholder.com/50" alt="Profile Picture" style="width: 70px; height: 70px; border-radius: 50%;">
+     <p style="padding-bottom:5px;">
+      <strong>
+       <span id="user-fullname"></span>
+      </strong>
+     </p>
+     <p style="padding-bottom:5px;">
+      <strong>
+       <span id="user-username"></span>
+      </strong>
+     </p>
+     <p style="padding-bottom:5px;"><b>UID:</b>
+      <strong>
+       <span id="user-userid"></span>
+      </strong>
+     </p>
+    </div>
+      <footer style="text-align: center; margin-top: 350px; padding: 10px; background-color: #000; color: #fff; font-size: 12px;">
+    <p>© 2024 Xtra Ordinary.<br>All rights reserved.</p>
+    <p>Contact Support:<a href="https://t.me/xtraordinarysupport" style="text-decoration: none;color: #ffd700;"> @xtraordinarysupport</a></p>
+  </footer>
+   </div>
+   <!-- Prosec1 Section -->
+    <div id="prosec1" class="section"><header>
+        <h2>SMTP/SMS API</h2></header>
+        <div class="product-grid">
+            <div class="product-card" onclick="showProductDetails('AMAZON WEB SERVICE SES', '50000 DAILY LIMITS, High email deliverability, Easy to scale, Dedicated IP support', '$100.00')">
+                <img id="product-img" src="images/send-mail.png">
+                <h4 id="product-name">AMAZON SES</h4>
+                <p id="product-details">50,000 DAILY LIMITS</p>
+                <h4 id="product-price">$100.00</h4>
+            </div>
+
+            <div class="product-card" onclick="showProductDetails('AMAZON SES', '100,000 DAILY LIMITS, High email deliverability, Easy to scale, Dedicated IP support', '$150.00')">
+                <img src="images/send-mail.png">
+                <h4>AMAZON SES</h4>
+                <p>100,000 DAILY LIMITS</p>
+                <h4>$150.00</h4>
+            </div>
+            <div class="product-card" onclick="showProductDetails('AMAZON SES', '200,000 DAILY LIMITS, High email deliverability, Easy to scale, Dedicated IP support', '$300.00')">
+                <img src="images/send-mail.png">
+                <h4>AMAZON SES</h4>
+                <p>200,000 DAILY LIMITS</p>
+                <h4>$300.00</h4>
+            </div>
+            <div class="product-card" onclick="showProductDetails('AMAZON SES', '500,000 DAILY LIMITS, High email deliverability, Easy to scale, Dedicated IP support', '$400.00')">
+                <img src="images/send-mail.png">
+                <h4>AMAZON SES</h4>
+                <p>500,000 DAILY LIMITS</p>
+                <h4>$400.00</h4>
+            </div>
+                        <div class="product-card" onclick="showProductDetails('MAILGUN', '200,000 DAILY LIMITS, API SUPPORT, WHITELISTED DOMAIN SENDER, DEDICATED IP SUPPORT', '$250.00')">
+                <img id="product-img" src="images/send-mail.png">
+                <h4 id="product-name">MAILGUN</h4>
+                <p id="product-details">200,000 DAILY LIMITS</p>
+                <h4 id="product-price">$250.00</h4>
+            </div>
+          <div class="product-card" onclick="showProductDetails('SENDGRID SMTP (HTTP API SUPPORT)', '100,000 DAILY LIMITS, WHITELISTED DOMAIN SENDER, DEDICATED IP SUPPORT', '$155.00')">
+                <img id="product-img" src="images/send-mail.png">
+                <h4 id="product-name">SENDGRID(API)</h4>
+                <p id="product-details">100,000 DAILY LIMITS</p>
+                <h4 id="product-price">$155.00</h4>
+            </div>
+                                    <div class="product-card" onclick="showProductDetails('SENDGRID', '500,000 DAILY LIMITS, API SUPPORT, WHITELISTED DOMAIN SENDER, DEDICATED IP SUPPORT, TWILIO SDK SUPPORT', '$350.00')">
+                <img id="product-img" src="images/send-mail.png">
+                <h4 id="product-name">SENDGRID</h4>
+                <p id="product-details">500,000 DAILY LIMITS</p>
+                <h4 id="product-price">$350.00</h4>
+            </div>
+                        <div class="product-card" onclick="showProductDetails('MIMECAST SMTP', '10 USERS | 20,000 DAILY LIMITS PER USER | 1 MAIN DOMAIN | 50MB ATTACHMENT PER EMAIL | HIGH IP REPUTATION | SUPPORT TLS (SPF/DKIM/DMARC AUTH) | FULL ANALYTICS & LOGS (TRACKING, DELIVERY, SPAM REPORTS)', '$350.00')">
+                <img src="images/send-mail.png">
+                <h4>MIMECAST SMTP</h4>
+                <p>FULL ADMIN CONSOLE</p>
+                <h4>$350.00</h4>
+            </div>
+                                <div class="product-card" onclick="showProductDetails('SAKURA.AD.JP', '100,000 DAILY LIMITS, HIGH EMAIL DELIVERABILITY, EASY TO SCALE, DEDICATED IP SUPPORT', '$150.00')">
+                <img src="images/send-mail.png">
+                <h4>SAKURA JP</h4>
+                <p>100,000 DAILY LIMITS</p>
+                <h4>$150.00</h4>
+            </div>             
+		<div class="product-card" onclick="showProductDetails('PIKARA.JP SMTP', 'HIGH LIMITS, HIGH EMAIL DELIVERABILITY, EASY TO SCALE, SMOOTH INBOX | FORMAT: HOSTNAME|PORT|USERNAME|PASSWORD', '$100.00')">
+                <img src="images/send-mail.png">
+                <h4>PIKARA.NE.JP SMTP</h4>         <p>5PCS PIKARA SMTP</p>
+                <h4>$100.00</h4>
+            </div>             
+                                <div class="product-card" onclick="showProductDetails('SMS GATEWAY', 'INTERNATIONAL/WORLDWIDE SMS GATEWAY | FULL ACCESS | ADMIN CONSOLE | BEST FOR SMS MARKETING/TRANSACTIONAL SENDOUT', '$200.00')">
+                <img src="images/send-mail.png">
+                <h4>SMS GATEWAY</h4>
+                <p>50,000 DAILY LIMITS</p>
+                <h4>$200.00</h4>
+            </div>
+                                            <div class="product-card" onclick="showProductDetails('SMS GATEWAY', 'INTERNATIONAL/WORLDWIDE SMS GATEWAY | FULL ACCESS | ADMIN CONSOLE | BEST FOR SMS MARKETING/TRANSACTIONAL SENDOUT', '$300.00')">
+                <img src="images/send-mail.png">
+                <h4>SMS GATEWAY</h4>
+                <p>100,000 DAILY LIMITS</p>
+                <h4>$300.00</h4>
+            </div>        
+        </div>
+    </div>
+
+  <!-- PROSEC2 Section -->
+    <div id="prosec2" class="section"><header>
+        <h2>DATABASE/LEADS</h2></header>
+         <div class="product-grid">
+            <div class="product-card" onclick="showProductDetails('BLOCKCHAIN (LOST ASSETS FORM)', 'mfreund6@verizon.net | Matthew Freund | 1504 Cedarcrest Ln | Frederick MD 21702 | United States | 3015254147', '$200.00')">
+                <img src="images/folder.png">
+                <h4>BLOCKCHAIN</h4>
+                <p>20,000 LINES USER INFO</p>
+                <h4>$200.00</h4>
+            </div>
+		 <div class="product-card" onclick="showProductDetails('BITPANDA (EUROPEAN MIXED)', 'FRESHLY SCRAPED AND LIVE CHECKED FROM ORIGINAL SITE | GUARANTEED HIT | BEST FOR EMAIL SPAM', '$500.00')">
+                <img src="images/folder.png">
+                <h4>BITPANDA MAILIST</h4>
+                <p>500K LINES (EU MIXED)</p>
+                <h4>$500.00</h4>
+                </div>
+            <div class="product-card" onclick="showProductDetails('COINBASE (EU MIXED)', 'FRESHLY SCRAPED AND LIVE CHECKED FROM ORIGINAL SITE | GUARANTEED HIT | BEST FOR EMAIL SPAM', '$100.00')">
+                <img src="images/folder.png">
+                <h4>COINBASE MAILIST</h4>
+                <p>100K CHECKED</p>
+                <h4>$100.00</h4>
+                </div>
+		 <div class="product-card" onclick="showProductDetails('TD LEADS', 'Shayla,Benjamin,140 Mill Rd Lot 32,Patterson,LA,70392,tammyb13165@aol.com,,129.73.252.32,Join', '$280.00')">
+                <img src="images/folder.png">
+                <h4>TD LEADS</h4>
+                <p>28,000 LINES USER INFO</p>
+                <h4>$280.00</h4>
+	    </div>
+		<div class="product-card" onclick="showProductDetails('FRESH STEALER LOG RESULTS DATABASE', 'FRESH UNTOUCHED | PRIVATE' , '$100.00')">
+    <img src="images/folder.png">
+    <h4>STEALER LOG RESULTS</h4>
+    <p>5GB LOG RESULTS</p>
+    <h4>$100.00</h4>
+</div>
+                            		<div class="product-card" onclick="showProductDetails('COINBASE USA TARGETED LEADS', 'FRESH UNTOUCHED | GUARANTEE NICE HITS' , '$100.00')">
+                <img src="images/folder.png">
+                <h4>COINBASE USA</h4>
+                <p>100K CHECKED</p>
+                <h4>$100.00</h4>
+                </div>             
+            <div class="product-card" onclick="showProductDetails('MyEtherWallet', 'Heather | Leopard | 906 Commercial St | Warsaw | MO | 65355 | male | heather.leopard@yahoo.com | 660-492-9030', '$600.00')">
+                <img src="images/folder.png">
+                <h4>myEtherWallet</h4>
+                <p>69,800 LINES USER DATA</p>
+                <h4>$600.00</h4>		
+            </div>
+		<div class="product-card" onclick="showProductDetails('COINBASE UK', 'MATTHEW O REILLY|32 BRYN-Y-NANT|LLANEDEYRN|CARDIFF|CARDIFF|CF23 9NZ|19970923|PC352998C|07922228975|MATTHEWJOREILLY@OUTLOOK.COM', '$400.00')">
+                <img src="images/folder.png">
+                <h4>COINBASE UK</h4>
+                <p>16,270 USER INFO</p>
+                <h4>$400.00</h4>
+            </div> 
+            <div class="product-card" onclick="showProductDetails('10,000 AUSTRALIAN BINANCE DEPOSITOR DATABASE', 'High-quality Australian Binance Databases with verified contact details, ideal for cold calling or panel', '$300.00')">
+    <img src="images/folder.png" alt="Product Image">
+    <h4>AUSTRALIAN BINANCE</h4>
+ <p>21,488 LINES</p>
+    <h4>$300.00</h4>
+</div>
+		 <div class="product-card" onclick="showProductDetails('NORWAY EMAIL TARGETED LEADS', 'FRESH UNSPAMMED | GUARANTEE NICE HITS' , '$300.00')">
+                <img src="images/folder.png">
+                <h4>NORWAY EMAIL LEADS</h4>
+                <p>271,836 VALID EMAIL LEADS</p>
+                <h4>$300.00</h4>
+                </div>
+		<div class="product-card" onclick="showProductDetails('BINANCE DEPOSITOR LEADS', 'JOANN | BONNE | 38 SANDY HALLOW ROAD | RIVERHEAD | NY | 11901 | $12,818.99 | 6315666967 | 3/20/1969 | djbonne382@optonline.net', '$218.00')">
+                <img src="images/folder.png">
+                <h4>BINANCE</h4>
+                <p>21,800 DEPOSIT INFO</p>
+                <h4>$218.00</h4>
+                </div>  
+                <div class="product-card" onclick="showProductDetails('CORESIGNAL.COM EMPLOYEE DATASET (USA/CA)', '78256|Mike Johnson|HR|HR Coordinator|4.2|$6,500|Q3 2024|1987-12-09|2012-04-10|Maria Garcia|$2,000|789 Pine St|Chicago|Illinois|US|mikejohnson@outlook.com|(312) 555-5432|Linda Johnson - 555-345-6789|Project Management, Leadership, Data Analysis|Bachelors Degree|HR Certification, Leadership Certification|Active', '$500.00')">
+                <img src="images/folder.png">
+                <h4>CORESIGNAL.COM</h4>
+                <p>FULL EMPLOYEE DATASET</p>
+                <h4>$500</h4>
+            </div> 
+            		<div class="product-card" onclick="showProductDetails('PCH SWEEPSTAKES', '10,000 LINES CUSTOMER INFO – RECENTLY DUMPED DATA – 100% VALID – BEST FOR CALL', '$200.00')">
+                <img src="images/folder.png">
+                <h4>SWEEPSTAKES</h4>
+                <p>10,000 CUSTOMER INFO</p>
+                <h4>$200.00</h4>
+                </div>   
+		<div class="product-card" onclick="showProductDetails('CHARTER.NET', 'FRESH UNTOUCHED | GUARANTEE NICE HITS' , '$100.00')">
+                <img src="images/folder.png">
+                <h4>CHARTER NET</h4>
+                <p>10,000 LINES LEADS</p>
+                <h4>$100.00</h4>
+                </div> 
+                <div class="product-card" onclick="showProductDetails('CITI BANK BUSINESS LEADS', 'Radco & Associates | 17 Teaberry Ln | Belvedere Tiburon | CA | 94920 | James Radu | Owner | 4157891257 | jradu@raddi.com | 1521-01 | Single-family Home Remodeling |  Additions and Repairs | greenearth_admin | P@ssw0rd123! | 7GJ6K2HD4L9Q' , '$299.00')">
+                <img src="images/folder.png">
+                <h4>CITIBANK USA</h4>
+                <p>39,000 BIZ LEADS</p>
+                <h4>$299.00</h4>
+                </div>  
+        </div>
+    </div>
+  <!-- PROSEC3 Section -->
+    <div id="prosec3" class="section">
+        <header>
+	<h2>LOGS/ACCOUNT</h2>
+	</header>
+        <div class="product-grid">
+            <div class="product-card" onclick="showProductDetails('CHASE USA BANK LOG VALID', 'FULL ACCESS | WITH CC DETAILS | READY TO CASHOUT | WITH DL+SELFIE', '$250.00')">
+                <img src="images/dollar-currency-symbol.png">                
+                <h4>USA BANK LOG</h4>
+                <p>14K CHASE LOG</p>
+                <h4>$250.00</h4>
+            </div>
+		<div class="product-card" onclick="showProductDetails('MINIMUM BALANCE $1000', 'FULL DETAILS | READY TO CASHOUT', '$120.00')">
+                <img src="images/dollar-currency-symbol.png">                
+                <h4>USA DUMPS</h4>
+                <p>DUMPS WITH PIN TRACK 1/2</p>
+                <h4>$120.00</h4>
+            </div>
+            <div class="product-card" onclick="showProductDetails('WELLSFARGO USA BANK LOG VALID', 'FULL ACCESS | WITH CC DETAILS | READY TO CASHOUT | WITH DL+SELFIE', '$120.00')">
+                <img src="images/dollar-currency-symbol.png">                
+                <h4>USA BANK LOG</h4>
+                <p>$9K WELLS LOG</p>
+                <h4>$120.00</h4>
+            </div>
+		<div class="product-card" onclick="showProductDetails('OFFICE LOG', 'FULL ACCESS | FRESH TODAY SPAMMED | WITH COOKIE | GUARANTEED HITS', '$200.00')">
+                <img src="images/dollar-currency-symbol.png">                
+                <h4>OFFICE LOGS</h4>
+                <p>127 FRESH LOGS</p>
+                <h4>$200.00</h4>
+            </div>
+              <div class="product-card" onclick="showProductDetails('USA VERIFIED COINBASE', 'FULL ACCESS | FRONT+BACK DL AND PASSPORTS | READY TO LOAD | MAXIMUM LIMITS', '$85.00')">
+                <img src="images/dollar-currency-symbol.png">                
+                <h4>VERIFIED COINBASE</h4>
+                <p>USA BASED ACCOUNT</p>
+                <h4>$85.00</h4>
+	      </div>
+	<div class="product-card" onclick="showProductDetails('USA VERIFIED PAYPAL', 'FULL ACCESS | FRONT+BACK DL PICTURE + PASSPORTS | READY TO LOAD | BEST FOR LONG TIME USE', '$55.00')">
+                <img src="images/dollar-currency-symbol.png">                
+                <h4>VERIFIED PAYPAL</h4>
+                <p>USA BASED ACCOUNT</p>
+                <h4>$55.00</h4>
+	      </div>
+		<div class="product-card" onclick="showProductDetails('ING.NL BANK LOG VALID', 'FULL ACCESS | WITH CC DETAILS | READY TO CASHOUT | WITH DL+SELFIE', '$200.00')">
+                <img src="images/dollar-currency-symbol.png">                
+                <h4>ING BANK LOG</h4>
+                <p>€12K BALANCE ING NETHERLAND</p>
+                <h4>$200.00</h4>
+	      </div>
+		<div class="product-card" onclick="showProductDetails('WESTPAC BANK LOGS', 'FULL ACCESS + COOKIES AND USERAGENT INFO | LIVE FULLZ | READY TO CASHOUT | WITH DL+SELFIE', '$350.00')">
+                <img src="images/dollar-currency-symbol.png">                
+                <h4>WESTPAC LOG</h4>
+                <p>$11K FA LOGS</p>
+                <h4>$350.00</h4>
+                </div>
+                <div class="product-card" onclick="showProductDetails('VERIFIED STRIPES', 'BEST FOR LOADING | FULL ACCESS | DRIVER LICENSE F&B | SELFIE | SELFIE WITH DL | INSTANT CASHOUT', '$150.00')">
+    <img src="images/dollar-currency-symbol.png">                
+    <h4>VERIFIED STRIPE</h4>
+    <p>FULL ACCESS</p>
+    <h4>$150.00</h4>
+</div>
+            		<div class="product-card" onclick="showProductDetails('USPS LOGS', 'FULL ACCESS | WITH PAST ORDER | PAYMENT ATTACHED | READY TO USE', '$50.00')">
+     <img src="images/dollar-currency-symbol.png">            
+            	<h4>USPS LOGS</h4>
+    <p>FA LOGS</p>
+    <h4>$50.00</h4>
+</div>
+		<div class="product-card" onclick="showProductDetails('GMX.CH 100%', '100% VALID HITS LOGIN', '$125.00')">
+    <img src="images/dollar-currency-symbol.png">                
+    <h4>GMX.ch</h4>
+    <p>5K VALID HITS</p>
+    <h4>$200.00</h4>
+</div>
+		<div class="product-card" onclick="showProductDetails('FRENCH VALID EMAIL LOGIN', '100% VALID LOGIN | SFR,ORANGE,HOTMAIL,YAHOO, ETC', '$200.00')">
+    <img src="images/dollar-currency-symbol.png">                
+    <h4>French Email Logs</h4>
+    <p>9K VALID MIX</p>
+    <h4>$200.00</h4>
+</div>
+		<div class="product-card" onclick="showProductDetails('NORTHWEST FEDERAL CREDIT UNION', '$18K BALANCE | FULL ACCESS | DRIVER LICENSE F&B | SELFIE | SELFIE WITH DL | VIRTUAL SIM FOR OTP | READY TO USE(CASHOUT)', '$140.00')">
+    <img src="images/dollar-currency-symbol.png">                
+    <h4>USA NWFCU LOG</h4>
+    <p>$18K FULL ACCESS</p>
+    <h4>$140.00</h4>
+</div>
+			<div class="product-card" onclick="showProductDetails('GOOGLE ADS', 'FULL ACCESS | READY TO RUN YOUR CAMPAIGN | WITH $1K BALANCE LOADED | WITH CACHE', '$150.00')">
+    <img src="images/dollar-currency-symbol.png">                
+    <h4>GOOGLE ADS $1K BALANCE</h4>
+    <p>READY TO ADVERTISE</p>
+    <h4>$150.00</h4>
+</div>
+			<div class="product-card" onclick="showProductDetails('GOOGLE ADS', 'FULL ACCESS | READY TO RUN YOUR CAMPAIGN | WITH $2K BALANCE LOADED | WITH CACHE', '$150.00')">
+    <img src="images/dollar-currency-symbol.png">                
+    <h4>GOOGLE ADS $2K BALANCE</h4>
+    <p>READY TO ADVERTISE</p>
+    <h4>$200.00</h4>
+</div>
+                              <div class="product-card" onclick="showProductDetails('STUBHUB HQ', 'FULL ACCESS | WITH CC DETAILS | 1 YEAR ACCOUNT', '$20.00')">
+                <img src="images/dollar-currency-symbol.png">                
+                <h4>STUBHUB FA</h4>
+                <p>1 YEAR ACCOUNT</p>
+                <h4>$20.00</h4>
+            </div>
+                            <div class="product-card" onclick="showProductDetails('INSTANT DELIVERY – AGED STRIPE USA GEOLOCATION', 'BEST FOR LOADING | FULL ACCESS | DRIVER LICENSE F&B | FACE VIDEO | SELFIE | SELFIE WITH DL | CARD ENABLE | NAME OF HOLDER: MICHAEL BURCHETT | 10K INSTANT PAYOUT | LEGIT ACCOUNT READY TO LOAD', '$300.00')">
+    <img src="images/dollar-currency-symbol.png">                
+    <h4>STRIPE BIZ</h4>
+    <p>USA GEO</p>
+    <h4>$300.00</h4>
+</div>
+		<div class="product-card" onclick="showProductDetails('x5 AGED EBAY LOGS', 'FULL ACCESS | WITH PAST ORDER | CREDIT CARD ATTACHED | PAYPAL ATTACHED | READY TO CHECKOUT', '$50.00')">
+    <img src="images/dollar-currency-symbol.png">                
+    <h4>EBAY LOGS</h4>
+    <p>FULL ACCESS</p>
+    <h4>$50.00</h4>
+</div>
+		<div class="product-card" onclick="showProductDetails('25 AGED EXPEDIA LOGS', 'FULL ACCESS | EMAIL ACCESS | WITH PAST ORDER | MINIMUM ONE KEY CASH $100.00 MINIMUM | READY TO CHECKOUT', '$100.00')">
+    <img src="images/dollar-currency-symbol.png">                
+    <h4>EXPEDIA LOGS</h4>
+    <p>FULL ACCESS</p>
+    <h4>$100.00</h4>
+</div>
+        </div>
+    </div>
+
+   <!-- PROSEC4 Section -->
+  <div id="prosec4" class="section">
+<header><h2>TOOLS</h2></header>
+<div class="product-grid">
+	<div class="product-card" onclick="showProductDetails('COINBASE VM CHECKER', 'HIGH CPM RATES | CAPTCHALESS | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | POST/REQUEST BASED CHECKER | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$350.00')">
+    <img src="images/soft.png">               
+    <h4>COINBASE CHECKER</h4>
+    <p>COINBASE VALID MAIL CHECKER</p>
+    <h4>$350.00</h4>
+</div>
+<div class="product-card" onclick="showProductDetails('BINANCE VM CHECKER', 'HIGH CPM RATES | CAPTCHALESS | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | POST/REQUEST BASED CHECKER | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$350.00')">
+    <img src="images/soft.png">               
+    <h4>BINANCE CHECKER</h4>
+    <p>BINANCE VALID MAIL CHECKER</p>
+    <h4>$350.00</h4>
+</div>
+<div class="product-card" onclick="showProductDetails('CRYPTO.COM VM CHECKER', 'HIGH CPM RATES | CAPTCHALESS | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | POST/REQUEST BASED CHECKER | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$350.00')">
+    <img src="images/soft.png">               
+    <h4>CRYPTO.COM CHECKER</h4>
+    <p>CRYPTO.COM VALID MAIL CHECKER</p>
+    <h4>$350.00</h4>
+</div>
+<div class="product-card" onclick="showProductDetails('GEMINI VM CHECKER', 'HIGH CPM RATES | CAPTCHALESS | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | POST/REQUEST BASED CHECKER | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$350.00')">
+    <img src="images/soft.png">               
+    <h4>GEMINI CHECKER</h4>
+    <p>GEMINI VALID MAIL CHECKER</p>
+    <h4>$350.00</h4>
+</div>
+<div class="product-card" onclick="showProductDetails('OKX VM CHECKER', 'HIGH CPM RATES | CAPTCHALESS | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | POST/REQUEST BASED CHECKER | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$350.00')">
+    <img src="images/soft.png">               
+    <h4>OKX CHECKER</h4>
+    <p>OKX VALID MAIL CHECKER</p>
+    <h4>$350.00</h4>
+</div>
+<div class="product-card" onclick="showProductDetails('BINANCE.US VM CHECKER', 'HIGH CPM RATES | CAPTCHALESS | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | POST/REQUEST BASED CHECKER | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$350.00')">
+    <img src="images/soft.png">               
+    <h4>BINANCE.US CHECKER</h4>
+    <p>BINANCE.US VALID MAIL CHECKER</p>
+    <h4>$350.00</h4>
+</div>
+<div class="product-card" onclick="showProductDetails('KUCOIN VM CHECKER', 'HIGH CPM RATES | CAPTCHALESS | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | POST/REQUEST BASED CHECKER | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$350.00')">
+    <img src="images/soft.png">               
+    <h4>KUCOIN CHECKER</h4>
+    <p>KUCOIN VALID MAIL CHECKER</p>
+    <h4>$350.00</h4>
+</div>
+<div class="product-card" onclick="showProductDetails('BYBIT VM CHECKER', 'HIGH CPM RATES | CAPTCHALESS | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | POST/REQUEST BASED CHECKER | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$350.00')">
+    <img src="images/soft.png">               
+    <h4>BYBIT CHECKER</h4>
+    <p>BYBIT VALID MAIL CHECKER</p>
+    <h4>$350.00</h4>
+</div>
+<div class="product-card" onclick="showProductDetails('KRAKEN VM CHECKER', 'HIGH CPM RATES | CAPTCHALESS | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | POST/REQUEST BASED CHECKER | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$350.00')">
+    <img src="images/soft.png">               
+    <h4>KRAKEN CHECKER</h4>
+    <p>KRAKEN VALID MAIL CHECKER</p>
+    <h4>$350.00</h4>
+</div>
+<div class="product-card" onclick="showProductDetails('SPOTIFY CHECKER', 'FAST VALIDATION | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$150.00')">
+    <img src="images/soft.png">               
+    <h4>SPOTIFY CHECKER</h4>
+    <p>SPOTIFY VALID EMAIL CHECKER</p>
+    <h4>$150.00</h4>
+</div>
+
+<div class="product-card" onclick="showProductDetails('AMAZON CHECKER', 'FAST VALIDATION | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$150.00')">
+    <img src="images/soft.png">               
+    <h4>AMAZON CHECKER</h4>
+    <p>AMAZON VALID EMAIL CHECKER</p>
+    <h4>$150.00</h4>
+</div>
+
+<div class="product-card" onclick="showProductDetails('NETFLIX CHECKER', 'FAST VALIDATION | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$150.00')">
+    <img src="images/soft.png">               
+    <h4>NETFLIX CHECKER</h4>
+    <p>NETFLIX VALID EMAIL CHECKER</p>
+    <h4>$150.00</h4>
+</div>
+
+<div class="product-card" onclick="showProductDetails('NETFLIX NUMBER CHECKER', 'FAST VALIDATION | PROXYLESS | ALL COUNTRY | ALL PHONE SIM CARRIER | LIFE TIME | CLI BASED TOOL', '$200.00')">
+    <img src="images/soft.png">               
+    <h4>NETFLIX CHECKER</h4>
+    <p>NETFLIX VALID NUMBER CHECKER</p>
+    <h4>$200.00</h4>
+</div>
+
+<div class="product-card" onclick="showProductDetails('APPLE CHECKER', 'FAST VALIDATION | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$150.00')">
+    <img src="images/soft.png">               
+    <h4>APPLE CHECKER</h4>
+    <p>APPLE VALID EMAIL CHECKER</p>
+    <h4>$150.00</h4>
+</div>
+
+<div class="product-card" onclick="showProductDetails('PAYPAL CHECKER', 'FAST VALIDATION | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$150.00')">
+    <img src="images/soft.png">               
+    <h4>PAYPAL CHECKER</h4>
+    <p>PAYPAL VALID EMAIL CHECKER</p>
+    <h4>$150.00</h4>
+</div>
+
+<div class="product-card" onclick="showProductDetails('PAYPAL NUMBER CHECKER', 'FAST VALIDATION | PROXYLESS | ALL COUNTRY | ALL PHONE SIM CARRIER | LIFE TIME | CLI BASED TOOL', '$200.00')">
+    <img src="images/soft.png">               
+    <h4>PAYPAL CHECKER</h4>
+    <p>PAYPAL VALID NUMBER CHECKER</p>
+    <h4>$200.00</h4>
+</div>
+
+<div class="product-card" onclick="showProductDetails('UPS CHECKER', 'FAST VALIDATION | PROXYLESS | ALL COUNTRY | ALL EMAIL DOMAINS | LIFE TIME | CLI BASED TOOL | SECURE AND LEGIT API ENDPOINT URL', '$150.00')">
+    <img src="images/soft.png">               
+    <h4>UPS CHECKER</h4>
+    <p>UPS VALID EMAIL CHECKER</p>
+    <h4>$150.00</h4>
+</div>
+<div class="product-card" onclick="showProductDetails('AUTODOXXER FULL SOURCE', '2000 CHECKS/MINUTES | USA/UK/EU | PROXYLESS | CAPTCHALESS | ALL EMAIL DOMAINS | LIFE TIME | CLI BASED TOOL | NO APIKEY NEEDED | WITH PROPERTY VALUE', '$300.00')">
+    <img src="images/soft.png">               
+    <h4>AUTODOXER</h4>
+    <p>AUTODOXER FULL SOURCE CODE</p>
+    <h4>$400.00</h4>
+</div>
+    </div>
+</div>
+
+  <script>
+   // Section switching logic
+   function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.section').forEach(section => {
+     section.classList.remove('active');
+    });
+    // Show the selected section
+    document.getElementById(sectionId).classList.add('active');
+    // Update active class in the footer navigation
+    document.querySelectorAll('.footer-nav button').forEach(button => {
+     button.classList.remove('active');
+    });
+    document.getElementById(`btn-${sectionId}`).classList.add('active');
+   }
+
+   // Show product details section before moving to payment
+   function showProductDetails(productName, productDetails, productPrice) {
+       // Hide all sections
+       document.querySelectorAll('.section').forEach(section => {
+           section.classList.remove('active');
+       });
+       // Show product details section
+       document.getElementById('product-details-section').classList.add('active');
+       document.getElementById('details-product-name').textContent = productName;
+       document.getElementById('details-product-details').textContent = productDetails;
+       document.getElementById('details-product-price').textContent = productPrice;
+   }
+
+   // Show payment section with product details
+   function showPaymentSection() {
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById('payment').classList.add('active');
+        document.getElementById('product-name').textContent = document.getElementById('details-product-name').textContent;
+        document.getElementById('product-details').textContent = document.getElementById('details-product-details').textContent;
+        document.getElementById('product-price').textContent = document.getElementById('details-product-price').textContent;
+        
+        // Trigger QR code generation for first time or after switching payment section
+        const selectedCrypto = document.getElementById('crypto-select').value;
+        if (selectedCrypto) {
+            showCryptoAddressAndConversion();
+        }
+   }
+  </script>
+ 
+
+ 
+  
+  <div class="footer-nav">
+   <button id="btn-profile" class="active" onclick="showSection('profile')">
+    <img src="images/i1.png" alt="Home Icon">
+   </button>
+   <button id="btn-prosec1" onclick="showSection('prosec1')">
+    <img src="images/i2.png" alt="Mates Icon">
+   </button>
+   <button id="btn-prosec2" onclick="showSection('prosec2')">
+    <img src="images/i3.png" border="0" alt="Withdraw Icon">
+   </button>
+   <button id="btn-prosec3" onclick="showSection('prosec3')">
+    <img src="images/bank.png" border="0" alt="prosec3.png">
+   </button>
+   <button id="btn-prosec4" onclick="showSection('prosec4')">
+    <img src="images/tools.png" border="0" alt="prosec4.png">
+   </button>
+  </div>
+  
+      <!-- Product Details Section -->
+    <div id="product-details-section" class="section">
+        <header><h2>ORDER CONFIRMATION</h2></header>
+        <div class="product-details">
+            <h1 style="font-size:24px;margin-left:10px;" id="details-product-name"></h1><br>
+            <h3 style="font-size:16px;margin-left:10px;color:gray;" id="details-product-details"></h3><br>
+            <h4 style="font-size:16px;margin-left:10px;" id="details-product-price"></h4><br>
+            <button onclick="showPaymentSection()" class="iButton">Proceed to Payment</button>
+        </div>
+		</div>
+
+    <!-- Payment Section -->
+  <div id="payment" class="section">
+   <header><h2>PAYMENT METHOD</h2></header>
+    <div class="product-details">
+      <select id="crypto-select" onchange="showCryptoAddressAndConversion()">
+        <option value="" disabled="" selected="">Select Cryptocurrency</option>
+        <option value="BTC">BTC (Bitcoin)</option>
+        <option value="ETH">ETH/ERC20 (Ethereum)</option>
+        <option value="USDT">USDT</option>
+        <option value="SOLANA">SOLANA</option>
+        <option value="LITECOIN">LITECOIN</option>
+        <option value="XMR">XMR (Monero)</option>
+      </select>
+      <p id="crypto-conversion"></p>
+      <div id="crypto-qr"></div>
+      <div id="countdown"></div><br>
+      <button onclick="copyAddress()" class="myButton">Copy Address</button>
+      <button onclick="startPaymentProcess()" class="myButton">I've already paid</button>
+    </div>
+  </div>
+  <div id="loading" class="loading"></div>
+
+  <script>
+  // Show payment section on Buy button click
+        function showPaymentSection() {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('payment').classList.add('active');
+        };
+
+let countdownTimer;
+let qrcodeInstance = null;
+
+function showCryptoAddressAndConversion() {
+    const selectedCrypto = document.getElementById('crypto-select').value;
+    const priceUSD = parseFloat(document.getElementById('details-product-price').textContent.replace('$', ''));
+    const conversionRates = {
+    'BTC': 0.00001209,
+    'ETH': 0.00037496,
+    'USDT': 1.0005,
+    'SOLANA': 0.00846392,
+    'LITECOIN': 0.01409851,
+    'XMR': 0.00189479,
+};
+    const addressMap = {
+        'BTC': 'bc1qqx2squ6lfewsedceham4066czcfrd758jdy8zl',
+        'ETH': '0x63221965AA144dDd0268dA16226a97308Bc6F844',
+        'USDT': 'TV6bk8zzt31azRw3JqN6rtdzCr1RhjDrhW',
+        'SOLANA': '3pz76EagVWT816w9iqD3FQWeu6nQwjEpdy59miJzHv7u',
+        'LITECOIN': 'ltc1q6smxy6afdv2sedlkmghp2fggvq7yzrm79hd030',
+        'XMR': '89ByM65SQ36GuSeoPBd1wc3JYypiyoKPb2LHqyktc9gc7z8SPGuRTukAHGGCLzp2QUjPYvjt8Wxa9QVQrTku9BtYGEnrY64'
+    };
+    const conversionAmount = (priceUSD * conversionRates[selectedCrypto]).toFixed(8);
+    const fullAddress = addressMap[selectedCrypto];
+    const shortAddress = `${fullAddress.slice(0, 4)}...............${fullAddress.slice(-4)}`;
+    
+    document.getElementById('crypto-conversion').textContent = `You need to pay ${conversionAmount} ${selectedCrypto} to ${shortAddress}`;
+    document.getElementById('crypto-conversion').setAttribute('data-full-address', fullAddress);
+    
+    // Generate QR code dynamically
+    const qrContainer = document.getElementById('crypto-qr');
+    qrContainer.innerHTML = ''; // Clear previous QR code
+    
+    // Create new QR code
+    qrcodeInstance = new QRCode(qrContainer, {
+        text: fullAddress,
+        width: 300,
+        height: 300,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+    });
+}
+
+function copyAddress() {
+    const fullAddress = document.getElementById('crypto-conversion').getAttribute('data-full-address');
+    if (fullAddress) {
+        navigator.clipboard.writeText(fullAddress).then(() => {
+            showTelegramAlert(); 
+        }).catch(err => {
+            console.error('Failed to copy address: ', err);
+        });
+    } else {
+        const telegram = Telegram.WebApp;
+        showTelegramPopup('Please select a cryptocurrency first!');
+    }
+}
+
+  function startPaymentProcess() {
+    startCountdown(1 * 60); // Start 60-second countdown
+  }
+
+  function startCountdown(duration) {
+    let timer = duration, minutes, seconds;
+    countdownTimer = setInterval(function () {
+      minutes = parseInt(timer / 60, 10);
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      document.getElementById('countdown').textContent = `Please wait, We currently checking your payment Est: ${minutes}:${seconds}`;
+
+      if (--timer < 0) {
+        clearInterval(countdownTimer);
+        document.getElementById('countdown').textContent = "Time is up!";
+        showLoading(); // Show loading after countdown
+      }
+    }, 1000);
+  }
+
+  function showLoading() {
+    document.getElementById('loading').style.display = 'block';
+    setTimeout(function () {
+      document.getElementById('loading').style.display = 'none';
+      const telegram = Telegram.WebApp;
+      showTelegramPopup('Please pay the correct amount');
+    }, 3000); // 3-second loading before showing alert
+  }
+
+function showTelegramPopup(message) {
+    Telegram.WebApp.showPopup({
+        title: "Failed",
+        message: message,
+        buttons: [{ text: "Quit", type: "destructive" }]
+    });
+}
+  
+function showTelegramAlert() {
+    Telegram.WebApp.showAlert("Payment address copied to clipboard");
+}
+  </script>
+
+</body></html>
