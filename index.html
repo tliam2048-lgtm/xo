@@ -975,13 +975,13 @@ let qrcodeInstance = null;
 function showCryptoAddressAndConversion() {
     const selectedCrypto = document.getElementById('crypto-select').value;
     const priceUSD = parseFloat(document.getElementById('details-product-price').textContent.replace('$', ''));
-    const conversionRates = {
-    'BTC': 0.00001209,
-    'ETH': 0.00037496,
-    'USDT': 1.0005,
-    'SOLANA': 0.00846392,
-    'LITECOIN': 0.01409851,
-    'XMR': 0.00189479,
+const conversionRates = {
+    'BTC': 0.0000165678,
+    'ETH': 0.0005887340,
+    'USDT': 1.00090081,
+    'SOLANA': 0.01398797,
+    'LITECOIN': 0.02407318,
+    'XMR': 0.00200807,
 };
     const addressMap = {
         'BTC': 'bc1qqx2squ6lfewsedceham4066czcfrd758jdy8zl',
